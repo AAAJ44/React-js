@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import Footer from './components/Footer/Footer';
+import Navbar from './components/Header/Navbar';
+import ItemDetailContainer from './components/Main/ItemDetailContainer';
+import ItemListContainer from './components/Main/ItemListContainer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Cart from './components/Cart/Cart';
+import Form from './components/Form/Form';
+import {CartProvider} from './components/context/CartContext';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <CartProvider>
+        <BrowserRouter>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<ItemListContainer />} />
+                <Route
+                    path="/category/:categoryName"
+                    element={<ItemListContainer />}
+                />
+                <Route path="/item/:id" element={<ItemDetailContainer />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path='/checkout' element={<Form />} />
+            </Routes>
+            <Footer />
+        </BrowserRouter>
+        </CartProvider>
+    );
 }
 
 export default App;
