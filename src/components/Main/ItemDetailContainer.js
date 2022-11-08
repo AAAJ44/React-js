@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        const collectionProd= collection  (db, 'productos')
+        const collectionProd= collection  (db, 'products')
         
         const ref= doc(collectionProd, id);
 
